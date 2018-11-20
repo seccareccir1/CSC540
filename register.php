@@ -15,7 +15,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $username_err = "Please enter a username.";
     } else{
         // Prepare a select statement
-        $sql = "SELECT id FROM users WHERE username = ?";
+        $sql = "SELECT userid FROM WebsiteUsers WHERE username = ?";
         $stmt = $conn->prepare($sql);
         // Bind variables to the prepared statement as parameters
         $stmt->bind_param("s", $param_username);
@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Set parameters
         $param_username = trim($_POST["username"]);    
         // Attempt to execute the prepared statement
-        $stmt->execute($stmt);
+        $stmt->execute();
         $res = $stmt->get_result();        
         if($res->num_rows == 1){
             $username_err = "This username is already taken.";
@@ -57,7 +57,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+        $sql = "INSERT INTO WebsiteUsers (username, password) VALUES (?, ?)";
          
         $stmter = $conn->prepare($sql);
             // Bind variables to the prepared statement as parameters
@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
         // Set parameters
         $param_username = $username;
-        $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+        $param_password = password_hash($password, PASSWORD_ARGON2I); // Creates a password hash
             
         // Attempt to execute the prepared statement
         if($stmter->execute()){
@@ -89,13 +89,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <title>Sign Up</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="wrapper">
+      <div class="loginform">
         <h2>Sign Up</h2>
         <p>Please fill this form to create an account.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -120,6 +118,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <p>Already have an account? <a href="login.php">Login here</a>.</p>
         </form>
+      </div>
     </div>    
 </body>
 </html>

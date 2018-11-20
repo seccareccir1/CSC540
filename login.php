@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT id, username, password FROM users WHERE username = ?";
+        $sql = "SELECT userid, username, password, adminyn, setupyn FROM WebsiteUsers WHERE username = ?";
 
         $stmt = $conn->prepare($sql);
         // Bind variables to the prepared statement as parameters
@@ -54,11 +54,15 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
               session_start();
               // Store data in session variables
               $_SESSION["loggedin"] = true;
-              $_SESSION["id"] = $row["id"];
-              $_SESSION["username"] = $row["username"];                            
+              $_SESSION["userid"] = $row["userid"];
+              $_SESSION["username"] = $row["username"];  
+              $_SESSION["ayn"] = $row["adminyn"];
+              $_SESSION["fullProfile"] = $row["setupyn"];
 
               // Redirect user to welcome page
               header("location: welcome.php");
+            }else{
+              $password_err = "Username and/or Password Incorrect, Please try again.";
             }
           }
           } else {
@@ -78,13 +82,11 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="wrapper">
+      <div class="loginform">
         <h2>Login</h2>
         <p>Please fill in your credentials to login.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -101,8 +103,9 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+            <p hidden>Don't have an account? <a href="register.php">Sign up now</a>.</p>
         </form>
+      </div>
     </div>    
 </body>
 </html>

@@ -1,31 +1,48 @@
 <?php
 // Initialize the session
 session_start();
- 
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
+else if($_SESSION["fullProfile"]==0){
+  header("location: regInfo.php");
+  exit;
+} 
+require_once "config.php";
+// get our db connection.
+$conn = get_db_connection();
+
+$sql = "SELECT A.FirstName, A.LastName FROM PersonInfo A LEFT JOIN WebsiteUsers B ON A.PersonID = B.PersonID WHERE B.username = ?";
+$fn = $ln = " ";
+$stmt1 = $conn->prepare($sql);
+// Bind variables to the prepared statement as parameters
+$stmt1->bind_param("s", $param_un);
+// Set parameters
+$param_un = ucfirst(htmlspecialchars($_SESSION["username"]));
+// Attempt to execute the prepared statement
+$stmt1->execute();
+$res = $stmt1->get_result();
+if ($res->num_rows > 0) {
+    // output data of each row
+    while ($row = $res->fetch_assoc()) {
+        $fn = $row["FirstName"];
+        $ln = $row["LastName"];
+    }
+} else {
+    echo "0 results";
+}
+  $stmt1->close();
+$conn->close();
+
 ?>
- 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; text-align: center; }
-    </style>
-</head>
+<?php require_once "menuAdmin.php"?>
 <body>
-    <div class="page-header">
-        <h1>Hi, <b><?php echo ucfirst(htmlspecialchars($_SESSION["username"])); ?></b>. Welcome to our site.</h1>
+      <div class="page-header">
+        <h1>Hi, <b><?php echo $fn .' '. $ln ?></b>. Welcome.</h1>
     </div>
-    <p>
-        <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
-        <a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a>
-    </p>
 </body>
 </html>
+
