@@ -1,0 +1,56 @@
+h4 {
+	background-image: linear-gradient(-90deg, white, #222);
+
+	padding-left: 1em;
+	padding-top: .5em;
+	padding-bottom: 0em;
+	padding-right: 1em;
+
+	margin-bottom: none;
+
+	border-radius: 10px 10px 0px 0px;
+	border-color: white;
+
+	color: white;
+}
+
+h5 {
+	margin-top: .5em;
+	margin-bottom: 0em;
+}
+
+table {
+	width: 100%;
+}
+
+#web-form {
+	background-image: linear-gradient(white, #bbb);
+	padding: 1em;
+
+	margin-top: none;
+	margin-bottom: 1em;
+
+	border-radius: 0px 0px 10px 10px;
+	border: 1px solid white;
+}
+
+#web-form-summary {
+	background-image: linear-gradient(white, #ccc);
+	padding: 1em;
+
+	margin-top: none;
+	margin-bottom: 1em;
+
+	border: 1px solid white;
+}
+
+#web-form-rows {
+	background-image: linear-gradient(#ccc, #aaa);
+	padding: 1em;
+
+	margin-top: none;
+	margin-bottom: 1em;
+
+	border-radius: 0px 0px 10px 10px;
+	border: 1px solid white;
+}

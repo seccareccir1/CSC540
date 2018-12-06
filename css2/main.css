@@ -1,0 +1,74 @@
+.container h4 {
+	background-image: linear-gradient(-90deg, white, #222);
+
+	padding-left: .5em;
+	padding-top: .5em;
+	padding-bottom: 0em;
+	padding-right: 1em;
+
+  margin-top: 1em;
+	margin-bottom: none;
+
+	border-radius: 10px 10px 0px 0px;
+	border-color: white;
+	color: white;
+}
+.container{
+	width:50%;
+	margin: 1% auto;
+	margin-top: 1%;
+	margin-right: auto;
+	margin-bottom: 1%;
+	margin-left: auto;
+}
+
+.container p {
+  padding-left: 1em;
+  padding: .5em;
+  
+  border-style: solid;
+  border-color: #ddd;
+  border-weight: 1px;
+}
+
+.container h6 {
+  font-weight: bold;
+}
+
+.container table {
+	width: 100%;
+}
+.containRight {
+	text-align:right;
+}
+#web-form {
+	background-image: linear-gradient(white, #bbb);
+	padding: 1em;
+
+	margin-top: none;
+	margin-bottom: 1em;
+
+	border-radius: 0px 0px 10px 10px;
+	border: 1px solid white;
+}
+
+#web-form-summary {
+	background-image: linear-gradient(white, #ccc);
+	padding: 1em;
+
+	margin-top: none;
+	margin-bottom: 1em;
+
+	border: 1px solid white;
+}
+
+#web-form-rows {
+	background-image: linear-gradient(#ccc, #aaa);
+	padding: 1em;
+
+	margin-top: none;
+	margin-bottom: 1em;
+
+	border-radius: 0px 0px 10px 10px;
+	border: 1px solid white;
+}

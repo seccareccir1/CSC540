@@ -38,10 +38,17 @@ $conn->close();
 
 ?>
 <!DOCTYPE html>
-<?php require_once "menuAdmin.php"?>
+<?php 
+if($_SESSION["ayn"] == 1){
+  require_once "menuAdmin.php";
+}else{
+  require_once "menuReadOnly.php";
+}
+?>
+<link href="css/form.css" rel="stylesheet" type="text/css">
 <body>
       <div class="page-header">
-        <h1>Hi, <b><?php echo $fn .' '. $ln ?></b>. Welcome.</h1>
+        <p style="font-size: 30px;">Hi, <b><?php echo $fn .' '. $ln ?></b>. Welcome.</p>
     </div>
 </body>
 </html>

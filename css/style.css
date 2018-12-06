@@ -18,7 +18,10 @@
     padding: 14px 16px;
     text-decoration: none;
 }
-
+.center_div{
+    margin: 0 auto;
+    width:60% /* value of your choice which suits your alignment */
+}
 .dropdown {
     float: left;
     overflow: hidden;

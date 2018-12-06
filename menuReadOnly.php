@@ -1,4 +1,4 @@
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/menuBar.js"></script>
   <div class="navbar">
@@ -8,7 +8,6 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content" id="quoteDD">
-        <a  href="createQuote.php">New Quote</a>
         <a  href="viewQuote.php">View Quotes</a>
       </div>
     </div> 
@@ -17,7 +16,6 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content" id="orderDD">
-        <a  href="createOrder.php">New Order</a>
         <a  href="viewOrders.php">View Orders</a>
       </div>
     </div> 
@@ -26,7 +24,6 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content" id="invoiceDD">
-        <a  href="createInvoice.php">New Invoice</a>
         <a  href="viewInvoice.php">View Invoices</a>
       </div>
     </div> 
@@ -35,8 +32,7 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content" id="customerDD">
-        <a  href="createCustomer.php">New Customer</a>
-        <a  href="customersList.php">View Customers</a>
+        <a  href="customersReadOnly.php">View Customers</a>
       </div>
     </div> 
   </div>

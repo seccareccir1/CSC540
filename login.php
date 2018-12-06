@@ -65,8 +65,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
               $password_err = "Username and/or Password Incorrect, Please try again.";
             }
           }
-          } else {
-          echo "0 results";
           }
     // Close statement
     $stmt->close();

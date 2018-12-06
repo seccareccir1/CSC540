@@ -6,7 +6,7 @@ require_once "config.php";
 // get our db connection.
 $conn = get_db_connection();
 // Check if the user is logged in, if no then redirect them to login page
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["ayn"] !== 1) {
     header("location: login.php");
     exit;
 }
@@ -104,7 +104,13 @@ function getLastId($con,$table){
 ?>
 
 <!DOCTYPE html>
-<?php require_once "menuAdmin.php"; ?>
+<?php 
+if($_SESSION["ayn"] == 1){
+  require_once "menuAdmin.php";
+}else{
+  require_once "menuReadOnly.php";
+}
+?>
 <title>Client Details</title>
 <link href="css/form.css" rel="stylesheet" type="text/css"><script src="js/validation.js"></script></head><body class="zf-backgroundBg"><!-- Change or deletion of the name attributes in the input tag will lead to empty values on record submission-->
 <div class="zf-templateWidth"><form action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>' name='form' method='POST' onSubmit='javascript:document.charset="UTF-8"; return zf_ValidateAndSubmit();' accept-charset='UTF-8' enctype='multipart/form-data' id='form'>
